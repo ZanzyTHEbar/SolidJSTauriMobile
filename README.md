@@ -81,6 +81,17 @@ rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-andro
 
 > **Warning**: You need rust to be installed prior to running the above command.
 
+Next run the following command to setup the mobile environment:
+
+```bash
+yarn tauri <target> init
+```
+
+Where `<target>` is one of the following:
+
+- `ios`
+- `android`
+
 ### Running your app
 
 To run your app using the mobile server, run the following:
@@ -88,11 +99,6 @@ To run your app using the mobile server, run the following:
 ```bash
 yarn tauri <target> dev
 ```
-
-Where `<target>` is one of the following:
-
-- `ios`
-- `android`
   
 #### Running the app with `Android Studio`
 
