@@ -65,7 +65,7 @@ Your app is ready to be deployed!
 
 #### Pre-requisites
 
-Navigate to the `setup` folder and run the setup script for your OS and target.
+Navigate to the [`setup`](/setup) folder and run the setup script for your OS and target.
 
 If you prefer to use the `Android Studio` for Android development, you can skip the setup script and simply follow these [docs](https://next--tauri.netlify.app/next/mobile/development/configuration) and [here](https://next--tauri.netlify.app/next/guides/getting-started/prerequisites/windows).
 
