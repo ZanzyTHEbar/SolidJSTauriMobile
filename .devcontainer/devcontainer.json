@@ -1,0 +1,47 @@
+{
+    "name": "Tauri Android",
+    "runArgs": [
+        "--network=host", // Without this the Tauri CLI will fail because it can't find a valid IP, and adb won't find your devices
+        "--device=/dev/kvm"
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            // You don't need to set any of these since the defaults in the Dockerfile should
+            // be the best/recommended ones to use, but it's here if you need it
+            // "VARIANT": "ubuntu-22.04", // Which version the container should use
+            // "NDK_VERSION": "25.2.9519653", // The NDK version to use
+            // "ANDROID_PLATFORM_VERSION": "31", // The SDK version
+            // "ANDROID_BUILD_TOOLS_VERSION": "33.0.0", // Build tools version
+            // "ANDROID_SDK_TOOLS_VERSION": "9477386", // The command line tools version
+            // "DEPENDENCIES": "" // Don't override this, it's the Tauri dependencies to get through apt
+            // "EXTRA_DEPENDENCIES": "" // Any additional apt dependencies you require in addition to the Tauri dependencies
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer", // Recommended, rust-analyzer, to validate Rust code
+                "tauri-apps.tauri-vscode", // Recommended, tauri.conf.json schema
+                "ms-azuretools.vscode-docker", // Optional, primarily helps me develop the Dockerfile
+                "vscjava.vscode-gradle", // Optional, used for editing gradle files directly in vscode
+                "wayou.vscode-todo-highlight", // Optional, used for tracking TODO
+                "gruntfuggly.todo-tree", // Optional, used for tracking TODO
+                "eamodio.gitlens", // Optional, used for github
+                "github.vscode-pull-request-github",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {}
+        }
+    },
+    // "forwardPorts": [        5039    ],
+    "postCreateCommand": "yarn", // Optional, automatically runs `pnpm i` once the container starts running
+    "remoteUser": "vscode", // The name of the non-root user in the container
+    "features": {
+        // Sets up Node.js, npm, yarn and pnpm
+        // We could do this in the Dockerfile, but this is easier
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        }
+    }
+}
