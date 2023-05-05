@@ -9,6 +9,19 @@ xcode-select --install
 printf "Installing Rust toolchain \n"
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 
+# ask the user wether to use android studio or the command line tools
+printf "Do you want to use Android Studio or the command line tools? (yes/no) \n"
+read -r answer
+# quit the script if the answer is y or yes
+if [ "$answer" == "yes" ] || [ "$answer" == "y" ]; then
+    printf "Please install Android Studio and follow the android studio guides for setting up the SDK and NDK \n"
+    printf "https://next--tauri.netlify.app/next/guides/getting-started/prerequisites/linux#android-studio \n"
+    printf "Please make sure to run the post installation script as well - after closing this terminal \n"
+    exit 1
+fi
+
+printf "Progressing with a standalone installation \n"
+
 printf "Installing OpenJDk \n"
 brew install openjdk
 
@@ -31,9 +44,5 @@ export NDK_HOME="$ANDROID_HOME/ndk/25.0.8775105"
 
 printf "Install required SDK and NDK components \n"
 ~/.android/cmdline-tools/bin/sdkmanager "platforms;android-33" "platform-tools" "ndk;25.0.8775105" "build-tools;33.0.0"
-
-printf "checking the Rust toolchain \n"
-rustup update
-rustc --version
 
 printf "Please restart the terminal and then run the post_installation.sh script to finish the setup \n"
